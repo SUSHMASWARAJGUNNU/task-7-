@@ -1,0 +1,3921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="pg1"><br>
+        <p class="data"><b>RODM Field Name</b><br><br>
+            FLB_CMIPRetryInterval<br><br>
+           <b> Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 86400. If the value is 0 (zero) and VTAM
+            CMIP Services ends, reinitialization is not attempted and the SNA topology
+            manager ends.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br>
+            <b>Default value</b><br><br>
+            30<br>
+            <b>FLB_Creator</b><br>
+            <b>Description</b><br><br>
+            This field identifies the owner of the object and serves as the signature of the
+            creator of the object. If you use FLB as the field value when creating an object,
+            either through direct specification or inheritance, the SNA topology manager
+            assumes ownership of the object. If you do not want the SNA topology manager to
+            own the object, you must put a value other than FLB into this field when 
+            an object.<br><br>
+            Objects that the SNA topology manager owns, as indicated with the field value of
+                FLB, can be deleted from the RODM data cache when:<br>
+            <ul class="points">
+                 <li>v The TOPOSNA PURGE command is issued</li>
+                <li>v The topology manager is started</li>
+                <li>v A topology agent sends a delete signal to the SNA topology manager</li><br>
+                <li>v For LU objects that are not being monitored continuously, when the SNA
+                topology manager stops monitoring the object because the monitoring of the LU
+                collection is stopped or all views are closed that contain an LU that was
+                displayed using an NMC Locate Resource with the Extended Search option
+                selected.</li></ul>
+            <p class="data">User-owned objects are not deleted from RODM; however, the SNA topology
+                manager deletes certain objects during a node type transformation or a view
+                merge, regardless of the ownership of the objects. See “SNA Topology Manager
+                Node Transformation” on page 70 and “APPN View Merge” on page 67 for
+                information about these functions and the objects that the SNA topology manager
+                can delete from the RODM data cache.<br><br>
+                <b>RODM Field Name</b><br><br>
+                FLB_Creator</p>
+        </p>
+    <br></section>
+    <section class="pg2"><br>
+        <p class="data"> 
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg3"><br>
+        <p class="data">
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>FLB_ErrorRetryLimit</b><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many times to retry an SNA topology
+            monitor command when there is a RODM request failure or an internal SNA
+            topology manager failure.<br><br>
+            You can only set this value indirectly using the TOPOSNA SETDEFS command.
+            The relevant keyword is ERRLIMIT. <br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ErrorRetryLimit<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1). If the value is 0 (zero), the
+            command is not retried.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            0<br><br>
+            <b>FLB_ImmTimeLucolRetry field</b><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            the topology manager attempts to reissue its request to the topology agent for the
+            LU collection.<br><br>
+            This value along with the value in the FLB_ImmTryLucolRetry field determines the
+            time interval of the first retry phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            The SNA topology manager data model FLB_ImmTimeLucolRetry class<br><br>
+           <b> Data type</b><br><br>
+            INTEGER<br>
+        </p>
+    <br></section>
+    <section class="pg4"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+           <b> FLB_ImmTimeRetryLocal</b><br>
+            <b>Description</b><br><br>
+            Operational variable to indicate how much time in seconds must pass before the
+            topology manager attempts to reissue its request to the topology agent for the local
+            topology.<br><br> 
+            The value specified in this field along with the value specified in the
+            FLB_ImmTryRetryLocal field determines the time interval of the first retry phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryLocal<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTimeRetryNetwork</b><br>
+           <b> Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br> 
+            This value along with the value in the FLB_ImmTryRetryNetwork field determines
+            the time interval of the first retry phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg5"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        </p>
+    <br></section>
+    <section class="pg6"><br>
+        <p class="data">
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryRetryLocal<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryNetwork<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring network
+            topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br>
+        </p>
+    <br></section>
+    <section class="pg7"><br>
+        <p class="data">
+           <b> FLB_LongTimeRetryLocal<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the local
+            topology.<br><br>
+             The value in this field along with the value specified in the
+            FLB_LongTimeRetryLocal field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryLocal<br><br>
+          <b>  Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+            <b>FLB_LongTimeRetryLucol<br>
+                Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the LU
+            collection.<br><br>
+            The value specified in this field along with the value specified in the
+            FLB_LongTryRetryLucol field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+           <b> RODM Field Name</b><br><br>
+            FLB_LongTimeRetryLucol<br><br>
+           <b> Data type</b><br><br>
+            INTEGER<br>
+        </p>
+    <br></section>
+    <section class="pg8"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg9"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTryRetryLocal<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            48<br><br>
+           <b> FLB_LongTryRetryLucol<br>
+            Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring the LU collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTryRetryLucol<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            48<br><br>
+            <b>FLB_LongTryRetryNetwork<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts before identifying the agent as inactive or unavailable when
+            monitoring network topology<br>
+        </p>
+    <br></section>
+    <section class="pg10"><br>
+        <p class="data">
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTryRetryNetwork<br><br>
+          <b>  Data type</b><br><br>
+            INTEGER<br><br>
+          <b>  Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            48<br><br>
+           <b> FLB_MonitoringLocalTopology<br>
+            Description</b><br><br>
+            This is an operational field to indicate whether the SNA topology manager is
+            monitoring the local topology of this node.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_MonitoringLocalTopolog<br><br>
+          <b>  Data type</b><br><br>
+            SMALLINT<br><br>
+          <b>  Value</b><br><br>
+            0 (no)<br><br>
+            1 (ongoing)<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>FLB_MonitoringNetworkTopology<br>
+                Description</b><br><br>
+            This is an operational field to indicate whether the SNA topology manager is
+            monitoring the network topology of this node.<br>
+        </p>
+    <br></section>
+    <section class="pg11"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_MonitoringNetworkTopology<br><br>
+           <b> Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br><br>
+            0 (no)<br><br>
+            1 (ongoing)<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            0<br><br>
+            <b>FLB_MonitorNewENs<br>
+                Description</b><br><br>
+            An operational variable that indicates whether topology manager starts monitoring
+            the local topology for newly discovered APPN end nodes.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_MonitorNewENs<br><br>
+           <b> Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            One of the following values:<br>
+            0 indicates no monitoring<br>
+            1 indicates monitoring<br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            0<br>
+        </p>
+    <br></section>
+    <section class="pg12"><br>
+        <p class="data">
+            <b> FLB_MonitoringLocalTopology<br>
+                Description</b><br><br>
+                This is an operational field to indicate whether the SNA topology manager is
+                monitoring the local topology of this node.<br><br>
+                <b>RODM Field Name</b><br><br>
+                FLB_MonitoringLocalTopolog<br><br>
+              <b>  Data type</b><br><br>
+                SMALLINT<br><br>
+              <b>  Value</b><br><br>
+                0 (no)<br><br>
+                1 (ongoing)<br><br>
+                <b>Value user modifiable</b><br><br>
+                No<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b> FLB_MonitoringLocalTopology<br>
+                    Description</b><br><br>
+                    This is an operational field to indicate whether the SNA topology manager is
+                    monitoring the local topology of this node.<br><br>
+                    <b>RODM Field Name</b><br><br>
+                    FLB_MonitoringLocalTopolog<br><br>
+                  <b>  Data type</b><br><br>
+                    SMALLINT<br><br>
+                  <b>  Value</b><br><br>
+                    0 (no)<br><br>
+                    1 (ongoing)<br><br>
+                    <b>Value user modifiable</b><br><br>
+                    No<br><br>
+                    <b>Default value</b><br><br>
+                    0<br><br>
+        </p>
+    <br></section>
+    <section class="pg13"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>FLB_MonitorNewSANetwork><br>
+                Description</b><br><br>
+            An operational variable that indicates whether topology manager starts monitoring
+            the network topology for newly discovered t5Nodes, interchangeNodes,
+            migrationDataHosts, or the VTAM product represented by a
+            crossDomainResourceManager when a netid is provided for the
+            crossDomainResourceManager. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_MonitorNewSANetwork<br><br>
+           <b> Data type</b><br><br>
+            INTEGER<br?<br>
+           <b> Value</b><br><br>
+            One of the following values:<br><br>
+            0 indicates no monitoring<br><br>
+            1 indicates monitoring<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            0<br><br>
+           <b> FLB_RodmRetryCount<br>
+            Description</b><br><br>
+            An operational variable that indicates the number of times the SNA topology
+            manager is to attempt to connect to RODM during reinitialization processing. This
+            reinitialization processing only occurs after the SNA topology manager has
+            successfully initialized and RODM termination has been detected.<br><br>
+            You can only set this value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            The second value of the RDMRETRY value-pair sets this field.<br><br>
+           <b> RODM Field Name</b><br><br>
+            FLB_RodmRetryCount<br>
+        </p>
+    <br></section>
+    <section class="pg14"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+        
+    <br></section>
+    <section class="pg15"><br>
+        <p class="data">
+                <b>RODM Field Name</b><br><br>
+                FLB_ImmTimeRetryNetwork<br><br>
+                <b>Data type</b><br><br>
+                INTEGER<br><br>
+                <b>Value</b><br><br>
+                A positive integer in the range of 0 - 3600.<br><br>
+                <b>Value user modifiable</b><br><br>
+                No<br><br>
+                <b>Default value</b><br><br>
+                60<br><br>
+                <b>FLB_ImmTryLucolRetry</b><br><br>
+                <b>Description</b><br><br>
+                An operational variable that indicates how many immediate retries the topology
+                manager attempts before attempting long-term retries when monitoring the LU
+                collection.<br><br>
+                You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+                <b>RODM Field Name</b><br><br>
+                FLB_ImmTryLucolRetry<br><br>
+                <b>Data type</b><br><br>
+                INTEGER<br><br>
+                <b>Value</b><br><br>
+                A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+                <b>Value user modifiable</b><br><br>
+                No<br><br>
+                <b>Default value</b><br><br>
+                5<br><br>
+                <b>FLB_ImmTryRetryLocal<br>
+                    Description</b><br><br>
+                An operational variable that indicates how many immediate retries the topology
+                manager attempts, before beginning long-term retries, when monitoring local
+                topology.<br>
+            
+        </p>
+    <br></section>
+    <section class="pg16"><br>
+        <p class="data"> 
+           <b> functionType<br>
+            Description</b><br><br>
+            This field supports the classification of real nodes by the function they perform.<br>
+            The functionType values are specified in OSI OmniPoint 1 Library Volume 4.<br><br>
+           <b> RODM Field Name</b><br><br>
+            1.2.124.360501.1.45<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Refer to the class for a list of possible integer values<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            Null<br><br>
+            <b>gatewayNode<br>
+                Description</b><br><br>
+            The gatewayNode field indicates whether this node is capable of acting as a
+            gateway node in an SNI gateway. A gateway node is a T4 node that translates
+            between the network name and address used by one subarea network to represent
+            a resource, and the network name and address, used by another subarea network
+            to represent the same resource.<br><br>
+           <b> RODM Field Name</b><br><br>
+            1.3.18.0.0.1971<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br><br>
+            For a t4Node object:<br><br>
+            0 The node is not a gateway.<br>
+             1 The node is a gateway. <br><br>
+             For a t4NodeGateway object:<br>
+            1 The node is a gateway<br>
+        </p>
+    <br></section>
+    <section class="pg17"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+        <b>gatewaySSCP<br>
+            Description</b><br><br>
+            The gatewaySSCP field indicates if this type 5 (T5) node is performing the gateway
+            SSCP function for an SNI gateway. The gateway SSCP function can be performed
+            by any one of the interconnected T5 subarea nodes. It interacts with the gateway
+            node and other gateway SSCPs to help initiate cross-network LU-LU sessions
+            through the gateway.<br><br> 
+            <b>RODM Field Name</b><br><br>
+            1.3.18.0.0.1972<br><br>
+           <b> Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br><br>
+            For a gatewaySSCP object:<br>
+            0 The node is not a gateway SSCP. <br>
+            1 The node is a gateway SSCP.<br>
+             See the specific object class in Chapter 7, “SNA Topology Manager Class
+            Reference,” on page 87.<br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+           <b> GeometricShape<br>
+            Description</b><br><br>
+            The GeometricShape field specifies the symbol shape of the display resource type
+            object when it is displayed as a node on a NetView management console.<br><br>
+            This field is predefined in the GMFHS data model for all display resource type
+            objects that are supplied with the NetView product.<br><br>
+            <b>RODM Field Name</b><br><br>
+            GeometricShape<br><br>
+          <b>  Data type</b><br><br>
+            INTEGER<br>
+            <b>Value</b><br><br>
+            The following values:<br><br>
+            <b>Value Meaning</b><br>
+        </p>
+    <br></section>
+    <section class="pg18"><br>
+        <p class="data">
+            0 Line<br><br>
+            1 Rectangle<br><br>
+            2 Triangle<br><br>
+            3 Hexagon<br><br>
+            4 Circle<br><br>
+            5 Parallelogram<br><br>
+            6 Pentagon<br><br>
+            7 Diamond<br><br>
+            8 Rounded Rectangle<br><br>
+            9 Octagon<br><br>
+            10 Trapezoid<br><br>
+            11 Star<br><br>
+            12 Circlestar<br><br>
+            13 Oval<br><br>
+            Default value<br><br>
+            1<br><br>
+            Value user modifiable<br><br>
+            Yes, for customer-defined objects. Do not change this value for Tivoli-defined
+            display resource type objects.<br><br>
+            <b>graphId<br>
+                Description</b><br><br>
+            The graphId field is used to identify an object of the classes listed under Class or
+            Role in Table 126 on page 419. For MultiSystem Manager, see the class description.<br><br>
+            <b>RODM Field Name</b><br><br>
+            1.3.18.0.0.2216<br><br>
+            <b>Data type</b><br><br>
+            CHARVAR<br><br>
+        </p>
+    <br></section>
+    <section class="pg19"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A variable-length character string as defined in the following tables:<br><br></p>
+           <p class="data"> Table 126. SNA Topology Manager Data Model graphId Field Values<br><br></p>
+            <img src="img.jpeg" alt=""> 
+            <p class="data"><b>Value user modifiable</b><br><br>
+                No<br><br>
+                <b>graphType<br>
+                    Description</b><br><br>
+                The graphType field identifies the role of an object of the aggregateGraph2 class.<br><br>
+                For example, this field contains “nnDomain” for an object of the class
+                aggregateGraph2 as nnDomain.<br><br>
+                <b>RODM Field Name</b><br><br>
+                1.3.18.0.0.2173<br><br>
+               <b> Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                The value of either: <br></p>
+            <ul class="points">
+                <li> v “nnDomain”</li>
+                <li>v “nnDomainNetwork”</li>
+                <li>v “nnDomainNetworkCluster”</li>
+            </ul>
+            <p class="data">The value depends on the aggregateGraph2 behavior.</p>
+        
+    <br></section>
+    <section class="pg20"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>GroupFunction<br>
+                Description</b><br><br>
+            The function that the SysplexGroup provides (or the type of resources that are
+            involved in the cross-domain communications). Indicates the type of data that is
+            shared between the group members.<br><br>
+            <b>RODM Field Name</b><br><br>
+            GroupFunction<br><br>
+            <b>Data type</b><br><br>
+            <b>Value</b><br><br>
+            Values are:</p>
+            <ul class="points">
+                <li>v 0 Unknown</li>
+                <li> v 1 Other</li>
+                <li>v 2 DB2 Data Sharing</li>
+                <li> v 3 IMSPlex</li>
+                <li>  v 4 IMS CQS</li>
+                <li> v 5 IMS IRLM</li>
+                <li> v 6 TCP/IP</li>
+                <li>v 7 CommSubplex</li>
+            </ul>
+            <p class="data">
+         <b>   Value user modifiable</b><br><br>
+            Default value<br><br>
+            <b>GroupName<br>
+                Description</b><br><br>
+            The name of the user-defined group that contains multiple managed systems.<br><br>
+            <b>RODM Field Name</b><br><br>
+            GroupName<br><br>
+            <b>Data type</b><br><br>
+            CHARVAR<br><br>
+            <b>Value</b><br><br>
+            A variable-length string<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br>
+        </p>
+    <br></section>
+    <section class="pg21"><br>
+        <p class="data">
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>FLB_ErrorRetryLimit</b><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many times to retry an SNA topology
+            monitor command when there is a RODM request failure or an internal SNA
+            topology manager failure.<br><br>
+            You can only set this value indirectly using the TOPOSNA SETDEFS command.
+            The relevant keyword is ERRLIMIT. <br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ErrorRetryLimit<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1). If the value is 0 (zero), the
+            command is not retried.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            0<br><br>
+            <b>FLB_ImmTimeLucolRetry field</b><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            the topology manager attempts to reissue its request to the topology agent for the
+            LU collection.<br><br>
+            This value along with the value in the FLB_ImmTryLucolRetry field determines the
+            time interval of the first retry phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            The SNA topology manager data model FLB_ImmTimeLucolRetry class<br><br>
+           <b> Data type</b><br><br>
+            INTEGER<br>
+        </p>
+    <br></section>
+    <section class="pg22"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+        <b>gatewaySSCP<br>
+            Description</b><br><br>
+            The gatewaySSCP field indicates if this type 5 (T5) node is performing the gateway
+            SSCP function for an SNI gateway. The gateway SSCP function can be performed
+            by any one of the interconnected T5 subarea nodes. It interacts with the gateway
+            node and other gateway SSCPs to help initiate cross-network LU-LU sessions
+            through the gateway.<br><br> 
+            <b>RODM Field Name</b><br><br>
+            1.3.18.0.0.1972<br><br>
+           <b> Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br><br>
+            For a gatewaySSCP object:<br>
+            0 The node is not a gateway SSCP. <br>
+            1 The node is a gateway SSCP.<br>
+             See the specific object class in Chapter 7, “SNA Topology Manager Class
+            Reference,” on page 87.<br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+           <b> GeometricShape<br>
+            Description</b><br><br>
+            The GeometricShape field specifies the symbol shape of the display resource type
+            object when it is displayed as a node on a NetView management console.<br><br>
+            This field is predefined in the GMFHS data model for all display resource type
+            objects that are supplied with the NetView product.<br><br>
+            <b>RODM Field Name</b><br><br>
+            GeometricShape<br><br>
+          <b>  Data type</b><br><br>
+            INTEGER<br>
+            <b>Value</b><br><br>
+            The following values:<br><br>
+            <b>Value Meaning</b><br>
+        </p>
+    <br></section>
+    <section class="pg23"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg24"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg25"><br>
+        <p class="data">
+            IfTypeInt<br>
+            Description<br>
+            Interface type. Indicates the interface type as specified on the LINK or INTERFACE
+            z/OS Communication Server TCP/IP profile statements. These are taken from the
+            z/CS enterprise-specific SNMP MIB enumerated value.<br><br>
+            <b>RODM Field Name</b><br><br>
+            IfTypeInt<br><br>
+           <b> Data type</b><br><br>
+            Smallint<br><br>
+            <b>Value</b><br><br>
+            The following interface types are defined by TCP/IP:<br>
+            unknown(0),<br>
+            lcs(1),<br>
+            ctc(2),<br>
+            claw(3),<br>
+            cdlc(4),<br>
+            atm(5),<br>
+            x25npsi(6),<br>
+            vipa(7),<br>
+            loopback(8),<br>
+            hch(9),<br>
+            ethernet(10),<br>
+            t8023(11),<br>
+            etheror8023(12),<br>
+            ibmtr(13),<br>
+            fddi(14),<br>
+            ip(15),<br>
+            iucv(16),<br>
+            stack(17),<br>
+            mpcptp(18),<br>
+            snalu0(19),<br>
+            snalu62(20),<br>
+            mpcipa(21),<br>
+            ipaqenet(22),<br>
+            mpcosa(24),<br>
+            osafddi(25),<br>
+            osaenet(26),<br>
+            ipaqtr(27),<br>
+            ipaqidio(28),<br>
+            loopback6(29),<br>
+            vipa6(30),<br>
+            ipaqenet6(31),<br>
+            mpcptp6(32),<br>
+            ipaqidio6(33)<br>
+            <b>Index<br>
+                Description</b><br><br>
+            A unique value, greater than zero, for each interface.<br>
+        </p>
+    <br></section>
+    <section class="pg26"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            Index<br><br>
+           <b> Data type</b><br><br>
+            Smallint<br><br>
+            <b>Value</b><br><br>
+            <b>individualStatus<br>
+                Description</b><br><br>
+            For resources that are multiply-owned, except t4NodeGateway, the
+            individualStatus field stores the following information:<br></p>
+            <ul class="points">
+                <li>v The default status</li>
+                <li>v The status reported from each agent</li>
+                <li>v The name of the agent that reported this status;</li>
+            </ul> <br>
+           <p class="data"> <b>RODM Field Name</b><br><br>
+            GroupFunction<br><br>
+            <b>Data type</b><br><br>
+            <b>Value</b><br><br>
+            Values are:</p>
+            <ul class="points">
+                <li>v 0 Unknown</li>
+                <li> v 1 Other</li>
+                <li>v 2 DB2 Data Sharing</li>
+                <li> v 3 IMSPlex</li>
+                <li>  v 4 IMS CQS</li>
+                <li> v 5 IMS IRLM</li>
+                <li> v 6 TCP/IP</li>
+                <li>v 7 CommSubplex</li>
+            </ul><br>
+        <p class="data">
+            Smallint<br><br>
+        </p>
+    <br></section>
+    <section class="pg27"><br>
+        <p class="data">
+            <b>Default value</b><br><br>
+            Class Default individualStatus Field Value<br><br>
+            logicalLink<br><br>
+            X'000001000001FF0000'<br>
+            port X'000001000001FF0000'<br>
+            t4Node<br>
+            X'010101000001FF0000'<br>
+            <b>interfaceLinkName<br>
+                Description</b><br><br>
+            The name of the TCP/IP interface (port) that represents this TCP/IP link.<br><br>
+            <b>RODM Field Name</b><br><br>
+            interfaceLinkName<br><br>
+            <b>Data type</b><br><br>
+            CHARVAR<br><br>
+            <b>Value</b><br><br>
+            A variable-length string concatenated with periods (.), (for example, 9.67.165.170),
+            or a user-specified name, (for example, GJACOBI).<br><br>
+          <b>  Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            Null<br><br>
+         <b>   IntfIndex<br>
+            Description</b><br><br>
+            A unique value, greater than zero, for each interface.<br><br>
+            <b>RODM Field Name</b><br><br>
+            <b>Data type</b><br><br>
+            <b>Value<br><br>
+                Value user modifiable<br><br>
+                InitialResourceStatus<br>
+                Description</b><br><br>
+            The InitialResourceStatus field specifies the initial status reported for resources
+            within this domain. This initial status is reported until the status is updated based
+            on information received from the NMG for this domain.<br>
+        </p>
+    <br></section>
+    <section class="pg28"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+                For a list of Tivoli-defined icons, see Appendix A, “DisplayResourceType
+                Reference,” on page 733.<br><br>
+               <b> Note:</b> Customer-defined icons must be installed at the NetView management
+                console.<br><br>
+                <b>RODM Field Name</b><br>
+                IconName<br>
+        </p>
+    <br></section>
+    <section class="pg29"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        
+        </p>
+    <br></section>
+    <section class="pg30"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg31"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg32"><br>
+        <p class="data">
+           <b> IQDIORouting<br>
+            Description</b><br><br>
+            Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+            TCP/IP profile statement. Enablement of this routing function specifies that
+            inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+            routed directly between a HiperSockets device and an OSA-Express device in
+            QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+            routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+            <b> RODM Field Name</b><br><br>
+            IQDIORouting<br><br>
+            <b>Data type</b><br><br>
+            SmallInt<br><br>
+            <b>Value</b><br><br>
+            0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+            is set.<br><br>
+            <b>IQDNetID<br>
+                Description</b><br><br>
+            The IQD (Internal QDIO) Network ID is an internal system generated identifier
+            that represents the internal logical network. The ID is associated with the IQD
+            CHPID and can span the entire CPC (based on the system configuration of the
+            IQD CHPID). Operating Systems executing on this CPC which are connected to the
+            same IQD Network ID are using the same internal logical network and therefore
+            have network connectivity. The ID is subject to change during system IML or with
+            dynamic I/O updates for the IQD CHPID.<br><br>
+            <b>RODM Field Name</b><br><br>
+            IQDNetID<br><br>
+            <b>Data type</b><br><br>
+            CHARVAR<br><br>
+            <b>Value</b><br><br>
+            X'0700' - X'07FF'<br><br>
+            <b>iPHostName<br>
+                Description</b><br><br>
+            Name of the IP host workstation that is assigned by the IP systems administrator
+            at the agent.<br><br>
+            <b>RODM Field Name</b><br><br>
+            iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg33"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg34"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+                For a list of Tivoli-defined icons, see Appendix A, “DisplayResourceType
+                Reference,” on page 733.<br><br>
+               <b> Note:</b> Customer-defined icons must be installed at the NetView management
+                console.<br><br>
+                <b>RODM Field Name</b><br>
+                IconName<br>
+        </p>
+    <br></section>
+    <section class="pg35"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        </p>
+    <br></section>
+    <section class="pg36"><br>
+        <p class="data">
+            <b>LanTrafficState<br>
+                Description</b><br><br>
+            The LAN traffic state.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LanTrafficState<br><br>
+            <b>Data type</b><br><br>
+            SmallInt<br><br>
+            <b>Value</b><br><br>
+            Ranges from 0 - 8. Values are:<br>
+            <ul class="points">
+                <li>  v undefined (0)</li>
+                <li>v unavailable (1)</li>
+                <li>v enabling (2)</li>
+                <li>v disabling (3)</li>
+                <li>v enabled (4)</li>
+                <li>v disabled (5) This is further explained in ibmOsaExpEthDisabledStatus and
+                    ibmOsa.</li>
+                    <li> v linkMonitor(6)</li>
+                    <li>v definitionError (7)</li>
+                    <li>v configuredOffline (8)</li>
+            </ul><br>
+           <b> LastObjectIDCorrelated<br>
+            Description</b><br><br>
+            This field is used by the topology correlation to identify the last object that was
+            correlated to this object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LastObjectIDCorrelatedr>
+            <b>Data type</b><br><br>
+            SELFDEFINING<br><br>
+            <b>Value</b><br><br>
+            A RODM ObjectID<br><br>
+          <b>  Value user modifiable</b><br><br>
+            No<br><br>
+            <b>LayoutOrientation<br>
+                Description</b><br><br>
+            For views laid out by a hierarchical or connectivity tree algorithm, this integer
+            specifies whether the orientation of the hierarchical structure laid out is from top to
+            bottom or from left to right. This field applies to the following layout types: <br>
+            
+        </p>
+        <ul class="points">
+            <li>v Hierarchical Graph</li>
+        </ul>
+    <br></section>
+    <section class="pg37"><br>
+        <ul class="points">
+            <li>v Connectivity Tree</li>
+        </ul>
+        <p class="data">    
+            Refer to the IBM Tivoli NetView for z/OS Resource Object Data Manager and GMFHS
+            Programmer's Guide for more information on how the view layout facility uses the
+            data supplied by this field.<br>
+            <b>RODM Field Name</b><br><br>
+            LayoutOrientation<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+         <b>   Value</b><br><br>
+            Valid values are as follows:<br>
+            0 Shows that the orientation of the hierarchical structure is from top to
+            bottom.<br>
+            1 Shows that the orientation of the hierarchical structure is from left to right.<br><br>
+            If an incorrect value is specified, RODM uses the default value.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            1 for Configuration_Child_III views<br><br>
+            0 for all other view types<br><br>
+            <b>LayoutParmList<br>
+                Description</b><br><br>
+            Links to the objects of the Layout_Parameters_For_Object_Class that contain layout
+            information for this displayable object or view. <br><br>
+            This displayable object or view can link to one or more
+            Layout_Parameters_For_Object_Class objects. When GMFHS builds a view, it uses
+            the layout parameters from the layout parameters object that is specified by both
+            the view object for the view and by the displayable object for an object in the view. When Layout_Parameters_For_Object_Class objects are required, a displayable
+            object must have a separate Layout_Parameters_For_Object_Class object for each
+            view it appears in.<br><br>
+            If a view object and a displayable object in the view both specify more than one
+            layout parameters object in common, GMFHS cannot resolve which layout
+            parameters object to use. GMFHS logs a message to the RODM log and use the
+            default layout parameters for the displayable object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutParmList<br>
+        </p>
+    <br></section>
+    <section class="pg38"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg39"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg40"><br>
+        <p class="data">
+            GMFHS_Aggregate_Objects_Class object that is created from the
+            Aggregate_Collection_Class.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes (at the object level only)<br><br>
+           <b> Default value</b><br>
+           <ul class="points">
+            <li>v For exception views, the default is 9. All other values are ignored.</li>
+            <li> v For configuration children, configuration child III, and configuration parent
+                views, the default is 6. </li>
+                <li>v For all other views, the default is 1.</li>
+           </ul>
+            </p><p class="data">
+            <b>LayoutWidth<br>
+                Description</b><br><br>
+            This field is used by the view layout facility to determine the width of each row
+            when the grid layout algorithm is used. Each row contains a maximum of the
+            number of resources specified by the LayoutWidth field. If a 0 (zero) value is
+            specified, the layout width is calculated by the NetView management console.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutWidth<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Valid values are in the range of 0 - 200.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>Level<br>
+                Description</b><br><br>
+            The maximum CFLEVEL supported by the system.<br><br>
+            <b>RODM Field Name</b><br><br>
+            Level<br><br>
+            <b>Data type</b><br><br>
+            Integer<br>
+        </p>
+    <br></section>
+    <section class="pg41"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg42"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg43"><br>
+        <p class="data">
+            Specification for non-network-qualified nonLocalResourceName:<br><br></p>
+           <div class="sen">
+            nonLocalResourceNam<br>
+            snaNetID.nonlocalResourceName
+           </div>
+           <p class="data">Example for non-network-qualified nonLocalResourceName:<br><br></p>
+            <div class="sen"> ’CDRSC1’<br>
+                ’SNANET.CDRSC1’</div>
+             <p class="data">Specification for network-qualified nonLocalResourceName when the snaNetID is
+                the same as the NETID of the nonLocalResourceName:<br></p>
+           <div class="sen"> nonLocalResourceName<br>
+            snaNetID.nonlocalResourceName<br>
+            snaNetID.snaNodeName.nonlocalResourceName</div>
+            <p class="data"> Example for network-qualified nonLocalResourceName when the snaNetID is the
+                same as the NETID of the nonLocalResourceName:<br></p>
+           <div class="sen">   ’CDRSC1’<br>
+            ’SNANET.CDRSC1’<br>
+            ’SNANET.NT81I056.CDRSC1’</div>
+
+           <p class="data">Specification for network-qualified nonLocalResourceName when the snaNetID is
+            different from the NETID of the nonLocalResourceName:<br></p>
+           <div class="sen"> nonLocalResourceName<br>
+            snaNetID1.nonlocalResourceName<br>
+            snaNetID2.nonlocalResourceName<br>
+            snaNetID1.snaNodeName.nonlocalResourceName</div>
+
+           <p class="data">Example for network-qualified nonLocalResourceName when the snaNetID is
+            different from the NETID of the nonLocalResourceName:<br></p>
+           <div class="sen"> ’CDRSC1’ <br>
+            ’SNANET1.CDRSC1’ <br>
+            ’SNANET2.CDRSC1’<br>
+            ’SNANET.NT81I056.CDRSC1’ </div><br>
+             
+
+           The following information describes the LocateName field value for a logicalUnit
+            class object.
+
+           <p class="data">Specification for network-qualified luName when the snaNetID is the same as the
+            NETID of the luName:</p>
+           <div class="sen"> luName <br>
+            snaNetID.luName<br>
+            snaNetID.snaNodeName.luName <br></div>
+
+           <p class="data"> Example for network-qualified luName when the snaNetID is the same as the
+            NETID of the luName: <br></p>
+           <div class="sen"> ’LU1’<br>
+            ’SNANET.LU1’<br>
+            ’SNANET.NT81I056.LU1’<br> </div>
+
+           <p class="data">Specification for network-qualified luName when the snaNetID is different than the
+            NETID of the luName:<br></p>
+           <div class="sen"> luName<br>
+            snaNetID1.luName</div>  <br>         
+        </p>
+    <br></section>
+    <section class="pg44"><br>
+            <div class="sen"> snaNetID2.luName<br>
+                snaNetID1.snaNodeName.luName</div>
+            <p class="data">Example for network-qualified luName when the snaNetID is different than the
+                NETID of the luName:</p>
+            <div class="sen"> ’LU1’<br>
+                ’SNANET1.LU1’<br>
+                ’SNANET2.LU1’<br>
+                ’SNANET1.NT81I056.LU1’</div>
+                <p class="data">
+             <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>LogicalConnDownstream<br>
+                Description</b><br><br>
+            Points to those objects to which this object has logical connectivity so this object
+            controls the flow of communications to those objects. This is the converse of the
+            LogicalConnUpstream relationship.<br><br>
+            A notification method is installed on this field when the data model is loaded into
+            RODM.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LogicalConnDownstream<br><br>
+            <b>Data type</b><br><br>
+            OBJECTLINKLIST<br><br>
+            <b>Value</b><br><br>
+            Links to the LogicalConnUpstream field of applicable objects<br><br>
+          <b>  Value user modifiable</b><br><br>
+            Yes<br><br>
+           <b> LogicalConnPP<br>
+            Description</b><br><br>
+            Points to those objects with which this object has peer-to-peer logical connectivity. That is, none of the objects being connected with this relationship exclusively
+            controls the flow of communications to the other objects involved in the
+            connection.<br><br>
+            A notification method is installed on this field when the data model is loaded into
+            RODM.<br><br>
+       <b>     RODM Field Name</b><br><br>
+            LogicalConnPP<br><br>
+        </p>
+    <br></section>
+    <section class="pg45"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg46"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>HwAddress<br>
+                Description</b><br><br>
+            Hardware address, such as MAC address.<br><br>
+            <b>RODM Field Name</b><br><br>
+            HwAddress<br><br>
+          <b>  Data type</b><br><br>
+            Charvar<br><br>
+            <b>Value</b><br><br>
+           <b> HwAddressActive<br>
+            Description</b><br><br>
+            The current MAC address in use on the adapter. <br><br>
+            <b>RODM Field Name</b><br><br>
+            HwAddressActive<br><br>
+            <b>Data type</b><br><br>
+            CHARVAR<br><br>
+           <b> Value</b><br><br>
+            <b>IconName <br>
+                Description</b><br><br>
+            This field contains the name of the file to be used by a NetView management
+            console view to represent this display resource type object.<br><br>
+            This field is predefined in the GMFHS data model for all Tivoli-defined display
+            resource type objects.<br><br>
+            For a list of Tivoli-defined icons, see Appendix A, “DisplayResourceType
+            Reference,” on page 733.<br><br>
+           <b> Note:</b> Customer-defined icons must be installed at the NetView management
+            console.<br><br>
+            <b>RODM Field Name</b><br>
+            IconName<br>
+        </p>
+    <br></section>
+    <section class="pg47"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg48"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+        </p>
+    <br></section>
+    <section class="pg49"><br>
+        <ul class="points">
+            <li> v nwNetwork</li>
+            <li>v physicalLANNetwork</li>
+        </ul>
+            <p class="data">
+                <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg50"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg51"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+    <br></section>
+    <section class="pg52"><br>
+        <p class="data">
+            <ul class="points">
+                <li> v nwNetwork</li>
+                <li>v physicalLANNetwork</li>
+            </ul>
+                <p class="data">
+                    <b>Value user modifiable</b><br><br>
+                    Yes<br><br>
+                    <b>Default value</b><br><br>
+                    0<br><br>
+                    <b>HwAddress<br>
+                        Description</b><br><br>
+                    Hardware address, such as MAC address.<br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddress<br><br>
+                  <b>  Data type</b><br><br>
+                    Charvar<br><br>
+                    <b>Value</b><br><br>
+                   <b> HwAddressActive<br>
+                    Description</b><br><br>
+                    The current MAC address in use on the adapter. <br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddressActive<br><br>
+                    <b>Data type</b><br><br>
+                    CHARVAR<br><br>
+                   <b> Value</b><br><br>
+                    <b>IconName <br>
+                        Description</b><br><br>
+                    This field contains the name of the file to be used by a NetView management
+                    console view to represent this display resource type object.<br><br>
+                    This field is predefined in the GMFHS data model for all Tivoli-defined display
+                    resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg53"><br>
+        <p class="data">
+            <b>LayoutWidth<br>
+                Description</b><br><br>
+            This field is used by the view layout facility to determine the width of each row
+            when the grid layout algorithm is used. Each row contains a maximum of the
+            number of resources specified by the LayoutWidth field. If a 0 (zero) value is
+            specified, the layout width is calculated by the NetView management console.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutWidth<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Valid values are in the range of 0 - 200.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>Level<br>
+                Description</b><br><br>
+            The maximum CFLEVEL supported by the system.<br><br>
+            <b>RODM Field Name</b><br><br>
+            Level<br><br>
+            <b>Data type</b><br><br>
+            Integer<br>
+        </p>
+    <br></section>
+    <section class="pg54"><br>
+        <p class="data">
+            <b> IQDIORouting<br>
+                Description</b><br><br>
+                Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+                TCP/IP profile statement. Enablement of this routing function specifies that
+                inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+                routed directly between a HiperSockets device and an OSA-Express device in
+                QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+                routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+                <b> RODM Field Name</b><br><br>
+                IQDIORouting<br><br>
+                <b>Data type</b><br><br>
+                SmallInt<br><br>
+                <b>Value</b><br><br>
+                0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+                is set.<br><br>
+                <b>IQDNetID<br>
+                    Description</b><br><br>
+                The IQD (Internal QDIO) Network ID is an internal system generated identifier
+                that represents the internal logical network. The ID is associated with the IQD
+                CHPID and can span the entire CPC (based on the system configuration of the
+                IQD CHPID). Operating Systems executing on this CPC which are connected to the
+                same IQD Network ID are using the same internal logical network and therefore
+                have network connectivity. The ID is subject to change during system IML or with
+                dynamic I/O updates for the IQD CHPID.<br><br>
+                <b>RODM Field Name</b><br><br>
+                IQDNetID<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+                <b>Value</b><br><br>
+                X'0700' - X'07FF'<br><br>
+                <b>iPHostName<br>
+                    Description</b><br><br>
+                Name of the IP host workstation that is assigned by the IP systems administrator
+                at the agent.<br><br>
+                <b>RODM Field Name</b><br><br>
+                iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg55"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg56"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg57"><br>
+        <p class="data">
+            Refer to the IBM Tivoli NetView for z/OS Resource Object Data Manager and GMFHS
+            Programmer's Guide for more information on how the view layout facility uses the
+            data supplied by this field.<br>
+            <b>RODM Field Name</b><br><br>
+            LayoutOrientation<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+         <b>   Value</b><br><br>
+            Valid values are as follows:<br>
+            0 Shows that the orientation of the hierarchical structure is from top to
+            bottom.<br>
+            1 Shows that the orientation of the hierarchical structure is from left to right.<br><br>
+            If an incorrect value is specified, RODM uses the default value.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            1 for Configuration_Child_III views<br><br>
+            0 for all other view types<br><br>
+            <b>LayoutParmList<br>
+                Description</b><br><br>
+            Links to the objects of the Layout_Parameters_For_Object_Class that contain layout
+            information for this displayable object or view. <br><br>
+            This displayable object or view can link to one or more
+            Layout_Parameters_For_Object_Class objects. When GMFHS builds a view, it uses
+            the layout parameters from the layout parameters object that is specified by both
+            the view object for the view and by the displayable object for an object in the view. When Layout_Parameters_For_Object_Class objects are required, a displayable
+            object must have a separate Layout_Parameters_For_Object_Class object for each
+            view it appears in.<br><br>
+            If a view object and a displayable object in the view both specify more than one
+            layout parameters object in common, GMFHS cannot resolve which layout
+            parameters object to use. GMFHS logs a message to the RODM log and use the
+            default layout parameters for the displayable object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutParmList<br>
+        </p>
+    <br></section>
+    <section class="pg58"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg59"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg60"><br>
+        <p class="data">
+            value of the EMDomain field of the Non_SNA_Domain_Class object linked to
+            this object by the Domain field, and RESOURCE is the name of this object as
+            specified in alerts or resolutions. This value is used as the name displayed for
+            the resource in views and dialogs if no DisplayResourceName value is
+            provided for the resource.<br><br>
+            For information on how GMFHS determines object names from alerts and
+            resolutions it receives, refer to the IBM Tivoli NetView for z/OS Resource Object
+            Data Manager and GMFHS Programmer's Guide.<br><br>
+             If you use generic commands that contain the %RESOURCE% token, the value
+            of this field is substituted for %RESOURCE% in the command. For information
+            on using %RESOURCE% in generic commands, refer to the IBM Tivoli NetView
+            for z/OS Resource Object Data Manager and GMFHS Programmer's Guide.<br>
+            <b> Non_SNA_Domain_Class   </b> <br>
+            The concatenation of the service point (SP), transaction Program (TP), and
+            element management system (EMS) names, as supplied in alerts, separated by
+            periods. Any names not supplied in an alert are not included in the value.
+            Minimum values are the SP name only or the TP name only. For information on how GMFHS determines non-SNA domain names from
+            alerts and resolutions it receives, refer to the IBM Tivoli NetView for z/OS
+            Resource Object Data Manager and GMFHS Programmer's Guide.<br><br>
+             <b>SNA_Domain_Class</b><br>
+            This is the 5-character domain identifier of the NetView program which is the
+            SNA domain. The value in the MyName field of any SNA_Domain_Class
+            object cannot be the same as the value specified in the EMDomain field of any
+            Non_SNA_Domain_Class object.<br><br>
+            <b>GMFHS_Aggregate_Objects_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  GMFHS_Shadow_Objects_Class</b><br>
+            Character string of the format NETWORK.RESOURCE, where NETWORK is
+            the name of the SNA network containing the shadow object, and RESOURCE
+            is the SNA name of the shadow object.<br><br>
+            <b>Layout_Parameters_For_Object_Class</b><br>
+            A name unique within this class.<br><br>
+            <b>Layout_Parameters_For_View_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  Network_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Backbone_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Configuration_Logical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Physical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Exception_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Peer_View_Class</b><br>
+            A character string, maximum 32 bytes.<br>
+        </p>
+    <br></section>
+    <section class="pg61"><br>
+        <p class="data">
+            <b> IQDIORouting<br>
+                Description</b><br><br>
+                Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+                TCP/IP profile statement. Enablement of this routing function specifies that
+                inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+                routed directly between a HiperSockets device and an OSA-Express device in
+                QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+                routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+                <b> RODM Field Name</b><br><br>
+                IQDIORouting<br><br>
+                <b>Data type</b><br><br>
+                SmallInt<br><br>
+                <b>Value</b><br><br>
+                0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+                is set.<br><br>
+                <b>IQDNetID<br>
+                    Description</b><br><br>
+                The IQD (Internal QDIO) Network ID is an internal system generated identifier
+                that represents the internal logical network. The ID is associated with the IQD
+                CHPID and can span the entire CPC (based on the system configuration of the
+                IQD CHPID). Operating Systems executing on this CPC which are connected to the
+                same IQD Network ID are using the same internal logical network and therefore
+                have network connectivity. The ID is subject to change during system IML or with
+                dynamic I/O updates for the IQD CHPID.<br><br>
+                <b>RODM Field Name</b><br><br>
+                IQDNetID<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+                <b>Value</b><br><br>
+                X'0700' - X'07FF'<br><br>
+                <b>iPHostName<br>
+                    Description</b><br><br>
+                Name of the IP host workstation that is assigned by the IP systems administrator
+                at the agent.<br><br>
+                <b>RODM Field Name</b><br><br>
+                iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg62"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg50"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg63"><br>
+        <p class="data">
+            <ul class="points">
+                <li> v nwNetwork</li>
+                <li>v physicalLANNetwork</li>
+            </ul>
+                <p class="data">
+                    <b>Value user modifiable</b><br><br>
+                    Yes<br><br>
+                    <b>Default value</b><br><br>
+                    0<br><br>
+                    <b>HwAddress<br>
+                        Description</b><br><br>
+                    Hardware address, such as MAC address.<br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddress<br><br>
+                  <b>  Data type</b><br><br>
+                    Charvar<br><br>
+                    <b>Value</b><br><br>
+                   <b> HwAddressActive<br>
+                    Description</b><br><br>
+                    The current MAC address in use on the adapter. <br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddressActive<br><br>
+                    <b>Data type</b><br><br>
+                    CHARVAR<br><br>
+                   <b> Value</b><br><br>
+                    <b>IconName <br>
+                        Description</b><br><br>
+                    This field contains the name of the file to be used by a NetView management
+                    console view to represent this display resource type object.<br><br>
+                    This field is predefined in the GMFHS data model for all Tivoli-defined display
+                    resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg64"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        </p>
+    <br></section>
+    <section class="pg65"><br>
+        <p class="data">
+            <b> IQDIORouting<br>
+                Description</b><br><br>
+                Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+                TCP/IP profile statement. Enablement of this routing function specifies that
+                inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+                routed directly between a HiperSockets device and an OSA-Express device in
+                QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+                routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+                <b> RODM Field Name</b><br><br>
+                IQDIORouting<br><br>
+                <b>Data type</b><br><br>
+                SmallInt<br><br>
+                <b>Value</b><br><br>
+                0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+                is set.<br><br>
+                <b>IQDNetID<br>
+                    Description</b><br><br>
+                The IQD (Internal QDIO) Network ID is an internal system generated identifier
+                that represents the internal logical network. The ID is associated with the IQD
+                CHPID and can span the entire CPC (based on the system configuration of the
+                IQD CHPID). Operating Systems executing on this CPC which are connected to the
+                same IQD Network ID are using the same internal logical network and therefore
+                have network connectivity. The ID is subject to change during system IML or with
+                dynamic I/O updates for the IQD CHPID.<br><br>
+                <b>RODM Field Name</b><br><br>
+                IQDNetID<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+                <b>Value</b><br><br>
+                X'0700' - X'07FF'<br><br>
+                <b>iPHostName<br>
+                    Description</b><br><br>
+                Name of the IP host workstation that is assigned by the IP systems administrator
+                at the agent.<br><br>
+                <b>RODM Field Name</b><br><br>
+                iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg66"><br>
+        <p class="data">
+            <b> IQDIORouting<br>
+                Description</b><br><br>
+                Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+                TCP/IP profile statement. Enablement of this routing function specifies that
+                inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+                routed directly between a HiperSockets device and an OSA-Express device in
+                QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+                routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+                <b> RODM Field Name</b><br><br>
+                IQDIORouting<br><br>
+                <b>Data type</b><br><br>
+                SmallInt<br><br>
+                <b>Value</b><br><br>
+                0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+                is set.<br><br>
+                <b>IQDNetID<br>
+                    Description</b><br><br>
+                The IQD (Internal QDIO) Network ID is an internal system generated identifier
+                that represents the internal logical network. The ID is associated with the IQD
+                CHPID and can span the entire CPC (based on the system configuration of the
+                IQD CHPID). Operating Systems executing on this CPC which are connected to the
+                same IQD Network ID are using the same internal logical network and therefore
+                have network connectivity. The ID is subject to change during system IML or with
+                dynamic I/O updates for the IQD CHPID.<br><br>
+                <b>RODM Field Name</b><br><br>
+                IQDNetID<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+                <b>Value</b><br><br>
+                X'0700' - X'07FF'<br><br>
+                <b>iPHostName<br>
+                    Description</b><br><br>
+                Name of the IP host workstation that is assigned by the IP systems administrator
+                at the agent.<br><br>
+                <b>RODM Field Name</b><br><br>
+                iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg67"><br>
+        <p class="data">
+            <b> IQDIORouting<br>
+                Description</b><br><br>
+                Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+                TCP/IP profile statement. Enablement of this routing function specifies that
+                inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+                routed directly between a HiperSockets device and an OSA-Express device in
+                QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+                routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+                <b> RODM Field Name</b><br><br>
+                IQDIORouting<br><br>
+                <b>Data type</b><br><br>
+                SmallInt<br><br>
+                <b>Value</b><br><br>
+                0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+                is set.<br><br>
+                <b>IQDNetID<br>
+                    Description</b><br><br>
+                The IQD (Internal QDIO) Network ID is an internal system generated identifier
+                that represents the internal logical network. The ID is associated with the IQD
+                CHPID and can span the entire CPC (based on the system configuration of the
+                IQD CHPID). Operating Systems executing on this CPC which are connected to the
+                same IQD Network ID are using the same internal logical network and therefore
+                have network connectivity. The ID is subject to change during system IML or with
+                dynamic I/O updates for the IQD CHPID.<br><br>
+                <b>RODM Field Name</b><br><br>
+                IQDNetID<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+                <b>Value</b><br><br>
+                X'0700' - X'07FF'<br><br>
+                <b>iPHostName<br>
+                    Description</b><br><br>
+                Name of the IP host workstation that is assigned by the IP systems administrator
+                at the agent.<br><br>
+                <b>RODM Field Name</b><br><br>
+                iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg68"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        </p>
+    <br></section>
+    <section class="pg69"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg70"><br>
+        <p class="data">
+            value of the EMDomain field of the Non_SNA_Domain_Class object linked to
+            this object by the Domain field, and RESOURCE is the name of this object as
+            specified in alerts or resolutions. This value is used as the name displayed for
+            the resource in views and dialogs if no DisplayResourceName value is
+            provided for the resource.<br><br>
+            For information on how GMFHS determines object names from alerts and
+            resolutions it receives, refer to the IBM Tivoli NetView for z/OS Resource Object
+            Data Manager and GMFHS Programmer's Guide.<br><br>
+             If you use generic commands that contain the %RESOURCE% token, the value
+            of this field is substituted for %RESOURCE% in the command. For information
+            on using %RESOURCE% in generic commands, refer to the IBM Tivoli NetView
+            for z/OS Resource Object Data Manager and GMFHS Programmer's Guide.<br>
+            <b> Non_SNA_Domain_Class   </b> <br>
+            The concatenation of the service point (SP), transaction Program (TP), and
+            element management system (EMS) names, as supplied in alerts, separated by
+            periods. Any names not supplied in an alert are not included in the value.
+            Minimum values are the SP name only or the TP name only. For information on how GMFHS determines non-SNA domain names from
+            alerts and resolutions it receives, refer to the IBM Tivoli NetView for z/OS
+            Resource Object Data Manager and GMFHS Programmer's Guide.<br><br>
+             <b>SNA_Domain_Class</b><br>
+            This is the 5-character domain identifier of the NetView program which is the
+            SNA domain. The value in the MyName field of any SNA_Domain_Class
+            object cannot be the same as the value specified in the EMDomain field of any
+            Non_SNA_Domain_Class object.<br><br>
+            <b>GMFHS_Aggregate_Objects_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  GMFHS_Shadow_Objects_Class</b><br>
+            Character string of the format NETWORK.RESOURCE, where NETWORK is
+            the name of the SNA network containing the shadow object, and RESOURCE
+            is the SNA name of the shadow object.<br><br>
+            <b>Layout_Parameters_For_Object_Class</b><br>
+            A name unique within this class.<br><br>
+            <b>Layout_Parameters_For_View_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  Network_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Backbone_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Configuration_Logical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Physical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Exception_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Peer_View_Class</b><br>
+            A character string, maximum 32 bytes.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg71"><br>
+        <p class="data">
+            value of the EMDomain field of the Non_SNA_Domain_Class object linked to
+            this object by the Domain field, and RESOURCE is the name of this object as
+            specified in alerts or resolutions. This value is used as the name displayed for
+            the resource in views and dialogs if no DisplayResourceName value is
+            provided for the resource.<br><br>
+            For information on how GMFHS determines object names from alerts and
+            resolutions it receives, refer to the IBM Tivoli NetView for z/OS Resource Object
+            Data Manager and GMFHS Programmer's Guide.<br><br>
+             If you use generic commands that contain the %RESOURCE% token, the value
+            of this field is substituted for %RESOURCE% in the command. For information
+            on using %RESOURCE% in generic commands, refer to the IBM Tivoli NetView
+            for z/OS Resource Object Data Manager and GMFHS Programmer's Guide.<br>
+            <b> Non_SNA_Domain_Class   </b> <br>
+            The concatenation of the service point (SP), transaction Program (TP), and
+            element management system (EMS) names, as supplied in alerts, separated by
+            periods. Any names not supplied in an alert are not included in the value.
+            Minimum values are the SP name only or the TP name only. For information on how GMFHS determines non-SNA domain names from
+            alerts and resolutions it receives, refer to the IBM Tivoli NetView for z/OS
+            Resource Object Data Manager and GMFHS Programmer's Guide.<br><br>
+             <b>SNA_Domain_Class</b><br>
+            This is the 5-character domain identifier of the NetView program which is the
+            SNA domain. The value in the MyName field of any SNA_Domain_Class
+            object cannot be the same as the value specified in the EMDomain field of any
+            Non_SNA_Domain_Class object.<br><br>
+            <b>GMFHS_Aggregate_Objects_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  GMFHS_Shadow_Objects_Class</b><br>
+            Character string of the format NETWORK.RESOURCE, where NETWORK is
+            the name of the SNA network containing the shadow object, and RESOURCE
+            is the SNA name of the shadow object.<br><br>
+            <b>Layout_Parameters_For_Object_Class</b><br>
+            A name unique within this class.<br><br>
+            <b>Layout_Parameters_For_View_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  Network_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Backbone_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Configuration_Logical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Physical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Exception_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Peer_View_Class</b><br>
+            A character string, maximum 32 bytes.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg72"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg73"><br>
+        <p class="data">
+            <ul class="points">
+                <li> v nwNetwork</li>
+                <li>v physicalLANNetwork</li>
+            </ul>
+                <p class="data">
+                    <b>Value user modifiable</b><br><br>
+                    Yes<br><br>
+                    <b>Default value</b><br><br>
+                    0<br><br>
+                    <b>HwAddress<br>
+                        Description</b><br><br>
+                    Hardware address, such as MAC address.<br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddress<br><br>
+                  <b>  Data type</b><br><br>
+                    Charvar<br><br>
+                    <b>Value</b><br><br>
+                   <b> HwAddressActive<br>
+                    Description</b><br><br>
+                    The current MAC address in use on the adapter. <br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddressActive<br><br>
+                    <b>Data type</b><br><br>
+                    CHARVAR<br><br>
+                   <b> Value</b><br><br>
+                    <b>IconName <br>
+                        Description</b><br><br>
+                    This field contains the name of the file to be used by a NetView management
+                    console view to represent this display resource type object.<br><br>
+                    This field is predefined in the GMFHS data model for all Tivoli-defined display
+                    resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg74"><br>
+        <p class="data">
+            <b> IQDIORouting<br>
+                Description</b><br><br>
+                Indicates whether the IQDIOROUTING parameter was specified in the IPCONFIG
+                TCP/IP profile statement. Enablement of this routing function specifies that
+                inbound packets that are to be forwarded by this TCP/IP stack are eligible to be
+                routed directly between a HiperSockets device and an OSA-Express device in
+                QDIO mode, and therefore can bypass this TCP/IP stack entirely. This type of
+                routing over a HiperSockets device (iQDIO) is called HiperSockets Accelerator.<br><br>
+                <b> RODM Field Name</b><br><br>
+                IQDIORouting<br><br>
+                <b>Data type</b><br><br>
+                SmallInt<br><br>
+                <b>Value</b><br><br>
+                0 if the parameter is not set on the IPCONFIG TCP/IP profile statement, and 1 if it
+                is set.<br><br>
+                <b>IQDNetID<br>
+                    Description</b><br><br>
+                The IQD (Internal QDIO) Network ID is an internal system generated identifier
+                that represents the internal logical network. The ID is associated with the IQD
+                CHPID and can span the entire CPC (based on the system configuration of the
+                IQD CHPID). Operating Systems executing on this CPC which are connected to the
+                same IQD Network ID are using the same internal logical network and therefore
+                have network connectivity. The ID is subject to change during system IML or with
+                dynamic I/O updates for the IQD CHPID.<br><br>
+                <b>RODM Field Name</b><br><br>
+                IQDNetID<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+                <b>Value</b><br><br>
+                X'0700' - X'07FF'<br><br>
+                <b>iPHostName<br>
+                    Description</b><br><br>
+                Name of the IP host workstation that is assigned by the IP systems administrator
+                at the agent.<br><br>
+                <b>RODM Field Name</b><br><br>
+                iPHostName<br>
+        </p>
+    <br></section>
+    <section class="pg75"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg76"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        </p>
+    <br></section>
+    <section class="pg77"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg50"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg78"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg79"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg80"><br>
+        <p class="data">
+            value of the EMDomain field of the Non_SNA_Domain_Class object linked to
+            this object by the Domain field, and RESOURCE is the name of this object as
+            specified in alerts or resolutions. This value is used as the name displayed for
+            the resource in views and dialogs if no DisplayResourceName value is
+            provided for the resource.<br><br>
+            For information on how GMFHS determines object names from alerts and
+            resolutions it receives, refer to the IBM Tivoli NetView for z/OS Resource Object
+            Data Manager and GMFHS Programmer's Guide.<br><br>
+             If you use generic commands that contain the %RESOURCE% token, the value
+            of this field is substituted for %RESOURCE% in the command. For information
+            on using %RESOURCE% in generic commands, refer to the IBM Tivoli NetView
+            for z/OS Resource Object Data Manager and GMFHS Programmer's Guide.<br>
+            <b> Non_SNA_Domain_Class   </b> <br>
+            The concatenation of the service point (SP), transaction Program (TP), and
+            element management system (EMS) names, as supplied in alerts, separated by
+            periods. Any names not supplied in an alert are not included in the value.
+            Minimum values are the SP name only or the TP name only. For information on how GMFHS determines non-SNA domain names from
+            alerts and resolutions it receives, refer to the IBM Tivoli NetView for z/OS
+            Resource Object Data Manager and GMFHS Programmer's Guide.<br><br>
+             <b>SNA_Domain_Class</b><br>
+            This is the 5-character domain identifier of the NetView program which is the
+            SNA domain. The value in the MyName field of any SNA_Domain_Class
+            object cannot be the same as the value specified in the EMDomain field of any
+            Non_SNA_Domain_Class object.<br><br>
+            <b>GMFHS_Aggregate_Objects_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  GMFHS_Shadow_Objects_Class</b><br>
+            Character string of the format NETWORK.RESOURCE, where NETWORK is
+            the name of the SNA network containing the shadow object, and RESOURCE
+            is the SNA name of the shadow object.<br><br>
+            <b>Layout_Parameters_For_Object_Class</b><br>
+            A name unique within this class.<br><br>
+            <b>Layout_Parameters_For_View_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  Network_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Backbone_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Configuration_Logical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Physical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Exception_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Peer_View_Class</b><br>
+            A character string, maximum 32 bytes.<br>
+        </p>
+    <br></section>
+    <section class="pg81"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg82"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg83"><br>
+        <p class="data">
+            <b>LayoutWidth<br>
+                Description</b><br><br>
+            This field is used by the view layout facility to determine the width of each row
+            when the grid layout algorithm is used. Each row contains a maximum of the
+            number of resources specified by the LayoutWidth field. If a 0 (zero) value is
+            specified, the layout width is calculated by the NetView management console.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutWidth<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Valid values are in the range of 0 - 200.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>Level<br>
+                Description</b><br><br>
+            The maximum CFLEVEL supported by the system.<br><br>
+            <b>RODM Field Name</b><br><br>
+            Level<br><br>
+            <b>Data type</b><br><br>
+            Integer<br>
+        </p>
+    <br></section>
+    <section class="pg84"><br>
+        <p class="data">
+            value of the EMDomain field of the Non_SNA_Domain_Class object linked to
+            this object by the Domain field, and RESOURCE is the name of this object as
+            specified in alerts or resolutions. This value is used as the name displayed for
+            the resource in views and dialogs if no DisplayResourceName value is
+            provided for the resource.<br><br>
+            For information on how GMFHS determines object names from alerts and
+            resolutions it receives, refer to the IBM Tivoli NetView for z/OS Resource Object
+            Data Manager and GMFHS Programmer's Guide.<br><br>
+             If you use generic commands that contain the %RESOURCE% token, the value
+            of this field is substituted for %RESOURCE% in the command. For information
+            on using %RESOURCE% in generic commands, refer to the IBM Tivoli NetView
+            for z/OS Resource Object Data Manager and GMFHS Programmer's Guide.<br>
+            <b> Non_SNA_Domain_Class   </b> <br>
+            The concatenation of the service point (SP), transaction Program (TP), and
+            element management system (EMS) names, as supplied in alerts, separated by
+            periods. Any names not supplied in an alert are not included in the value.
+            Minimum values are the SP name only or the TP name only. For information on how GMFHS determines non-SNA domain names from
+            alerts and resolutions it receives, refer to the IBM Tivoli NetView for z/OS
+            Resource Object Data Manager and GMFHS Programmer's Guide.<br><br>
+             <b>SNA_Domain_Class</b><br>
+            This is the 5-character domain identifier of the NetView program which is the
+            SNA domain. The value in the MyName field of any SNA_Domain_Class
+            object cannot be the same as the value specified in the EMDomain field of any
+            Non_SNA_Domain_Class object.<br><br>
+            <b>GMFHS_Aggregate_Objects_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  GMFHS_Shadow_Objects_Class</b><br>
+            Character string of the format NETWORK.RESOURCE, where NETWORK is
+            the name of the SNA network containing the shadow object, and RESOURCE
+            is the SNA name of the shadow object.<br><br>
+            <b>Layout_Parameters_For_Object_Class</b><br>
+            A name unique within this class.<br><br>
+            <b>Layout_Parameters_For_View_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  Network_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Backbone_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Configuration_Logical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Physical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Exception_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Peer_View_Class</b><br>
+            A character string, maximum 32 bytes.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg85"><br>
+        <p class="data">
+            GMFHS_Aggregate_Objects_Class object that is created from the
+            Aggregate_Collection_Class.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes (at the object level only)<br><br>
+           <b> Default value</b><br>
+           <ul class="points">
+            <li>v For exception views, the default is 9. All other values are ignored.</li>
+            <li> v For configuration children, configuration child III, and configuration parent
+                views, the default is 6. </li>
+                <li>v For all other views, the default is 1.</li>
+           </ul>
+            </p><p class="data">
+            <b>LayoutWidth<br>
+                Description</b><br><br>
+            This field is used by the view layout facility to determine the width of each row
+            when the grid layout algorithm is used. Each row contains a maximum of the
+            number of resources specified by the LayoutWidth field. If a 0 (zero) value is
+            specified, the layout width is calculated by the NetView management console.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutWidth<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Valid values are in the range of 0 - 200.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>Level<br>
+                Description</b><br><br>
+            The maximum CFLEVEL supported by the system.<br><br>
+            <b>RODM Field Name</b><br><br>
+            Level<br><br>
+            <b>Data type</b><br><br>
+            Integer<br>
+        </p>
+    <br></section>
+    <section class="pg86"><br>
+        <p class="data">
+            value of the EMDomain field of the Non_SNA_Domain_Class object linked to
+            this object by the Domain field, and RESOURCE is the name of this object as
+            specified in alerts or resolutions. This value is used as the name displayed for
+            the resource in views and dialogs if no DisplayResourceName value is
+            provided for the resource.<br><br>
+            For information on how GMFHS determines object names from alerts and
+            resolutions it receives, refer to the IBM Tivoli NetView for z/OS Resource Object
+            Data Manager and GMFHS Programmer's Guide.<br><br>
+             If you use generic commands that contain the %RESOURCE% token, the value
+            of this field is substituted for %RESOURCE% in the command. For information
+            on using %RESOURCE% in generic commands, refer to the IBM Tivoli NetView
+            for z/OS Resource Object Data Manager and GMFHS Programmer's Guide.<br>
+            <b> Non_SNA_Domain_Class   </b> <br>
+            The concatenation of the service point (SP), transaction Program (TP), and
+            element management system (EMS) names, as supplied in alerts, separated by
+            periods. Any names not supplied in an alert are not included in the value.
+            Minimum values are the SP name only or the TP name only. For information on how GMFHS determines non-SNA domain names from
+            alerts and resolutions it receives, refer to the IBM Tivoli NetView for z/OS
+            Resource Object Data Manager and GMFHS Programmer's Guide.<br><br>
+             <b>SNA_Domain_Class</b><br>
+            This is the 5-character domain identifier of the NetView program which is the
+            SNA domain. The value in the MyName field of any SNA_Domain_Class
+            object cannot be the same as the value specified in the EMDomain field of any
+            Non_SNA_Domain_Class object.<br><br>
+            <b>GMFHS_Aggregate_Objects_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  GMFHS_Shadow_Objects_Class</b><br>
+            Character string of the format NETWORK.RESOURCE, where NETWORK is
+            the name of the SNA network containing the shadow object, and RESOURCE
+            is the SNA name of the shadow object.<br><br>
+            <b>Layout_Parameters_For_Object_Class</b><br>
+            A name unique within this class.<br><br>
+            <b>Layout_Parameters_For_View_Class</b><br>
+            A name unique within this class.<br><br>
+          <b>  Network_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Backbone_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Configuration_Logical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Physical_Connectivity_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+           <b> Exception_View_Class</b><br>
+            A character string, maximum 32 bytes.<br><br>
+            <b>Configuration_Peer_View_Class</b><br>
+            A character string, maximum 32 bytes.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg87"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg88"><br>
+        <p class="data">
+            <b>Value user modifiable</b><br><br>
+                Yes<br><br>
+                <b>Default value</b><br><br>
+                0<br><br>
+                <b>HwAddress<br>
+                    Description</b><br><br>
+                Hardware address, such as MAC address.<br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddress<br><br>
+              <b>  Data type</b><br><br>
+                Charvar<br><br>
+                <b>Value</b><br><br>
+               <b> HwAddressActive<br>
+                Description</b><br><br>
+                The current MAC address in use on the adapter. <br><br>
+                <b>RODM Field Name</b><br><br>
+                HwAddressActive<br><br>
+                <b>Data type</b><br><br>
+                CHARVAR<br><br>
+               <b> Value</b><br><br>
+                <b>IconName <br>
+                    Description</b><br><br>
+                This field contains the name of the file to be used by a NetView management
+                console view to represent this display resource type object.<br><br>
+                This field is predefined in the GMFHS data model for all Tivoli-defined display
+                resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg89"><br>
+        <p class="data">
+            <b>Data type</b><br><br>
+            CHARVAR PUBLIC_INDEXED<br><br>
+            <b>Value</b><br><br>
+            Any printable named string<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+           <b> Default value</b><br><br>
+            FLB<br><br>
+            <b>FLB_DemandActivatedLinkState</b><br>
+           <b> Description</b><br><br>
+            This field indicates whether the underlying connection of the object is an inactive
+            demand-activated link. In an APPN network, the combination of a transmission
+            group status as operational and the link status as inactive indicates an inactive
+            demand-activated link. You must be monitoring local topology from the node
+            owning the link to be able to recognize this status; If only network topology is
+            being monitored, then the only status information is the transmission group status
+            which is operational.<br><br>
+            In terms of the operationalState portion of the field: 
+          <ul class="points">
+            <li> v The transmission group that is operational is indicated as enabled. </li>
+            <li>v The transmission group that is not operational is indicated as disabled. </li>
+            <li>v The logical link that is active is indicated as enabled.</li>
+            <li>v The logical link that is inactive is indicated as disabled.</li>
+          </ul>
+            <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg90"><br>
+        <p class="data">
+            In terms of the operationalState portion of the field: 
+            <ul class="points">
+              <li> v The transmission group that is operational is indicated as enabled. </li>
+              <li>v The transmission group that is not operational is indicated as disabled. </li>
+              <li>v The logical link that is active is indicated as enabled.</li>
+              <li>v The logical link that is inactive is indicated as disabled.</li>
+            </ul>
+              <p class="data">
+                  This field is an SNA topology manager-specific state field, which is treated as one
+              of the OSI state and status fields during the calculation of the display status of the
+              object.<br><br>
+              <b>RODM Field Name</b><br><br>
+              FLB_DemandActivatedLinkState<br><br>
+              <b>Data type</b><br><br>
+              SMALLINT<br><br>
+              <b>Value</b><br>
+              0 Demand-activated link capability unknown<br>
+              1 Demand-activated and inactive<br><br>
+              <b>Value user modifiable</b><br><br>
+              No <br>
+              </p>
+              <p class="data">
+                This field is an SNA topology manager-specific state field, which is treated as one
+            of the OSI state and status fields during the calculation of the display status of the
+            object.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_DemandActivatedLinkState<br><br>
+            <b>Data type</b><br><br>
+            SMALLINT<br><br>
+            <b>Value</b><br>
+            0 Demand-activated link capability unknown<br>
+            1 Demand-activated and inactive<br><br>
+            <b>Value user modifiable</b><br><br>
+            No <br>
+            </p>
+        </p>
+    <br></section>
+    <section class="pg91"><br>
+        <p class="data">
+            <ul class="points">
+                <li> v nwNetwork</li>
+                <li>v physicalLANNetwork</li>
+            </ul>
+                <p class="data">
+                    <b>Value user modifiable</b><br><br>
+                    Yes<br><br>
+                    <b>Default value</b><br><br>
+                    0<br><br>
+                    <b>HwAddress<br>
+                        Description</b><br><br>
+                    Hardware address, such as MAC address.<br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddress<br><br>
+                  <b>  Data type</b><br><br>
+                    Charvar<br><br>
+                    <b>Value</b><br><br>
+                   <b> HwAddressActive<br>
+                    Description</b><br><br>
+                    The current MAC address in use on the adapter. <br><br>
+                    <b>RODM Field Name</b><br><br>
+                    HwAddressActive<br><br>
+                    <b>Data type</b><br><br>
+                    CHARVAR<br><br>
+                   <b> Value</b><br><br>
+                    <b>IconName <br>
+                        Description</b><br><br>
+                    This field contains the name of the file to be used by a NetView management
+                    console view to represent this display resource type object.<br><br>
+                    This field is predefined in the GMFHS data model for all Tivoli-defined display
+                    resource type objects.<br><br>
+        </p>
+    <br></section>
+    <section class="pg92"><br>
+        <p class="data">
+            <b>LayoutWidth<br>
+                Description</b><br><br>
+            This field is used by the view layout facility to determine the width of each row
+            when the grid layout algorithm is used. Each row contains a maximum of the
+            number of resources specified by the LayoutWidth field. If a 0 (zero) value is
+            specified, the layout width is calculated by the NetView management console.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutWidth<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Valid values are in the range of 0 - 200.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>Level<br>
+                Description</b><br><br>
+            The maximum CFLEVEL supported by the system.<br><br>
+            <b>RODM Field Name</b><br><br>
+            Level<br><br>
+            <b>Data type</b><br><br>
+            Integer<br>
+        </p>
+    <br></section>
+    <section class="pg93"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+    <section class="pg94"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            60<br><br>
+            <b>FLB_ImmTryLucolRetry</b><br><br>
+            <b>Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts before attempting long-term retries when monitoring the LU
+            collection.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_ImmTryLucolRetry<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 2147483647 (2³¹-1).<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            5<br><br>
+            <b>FLB_ImmTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many immediate retries the topology
+            manager attempts, before beginning long-term retries, when monitoring local
+            topology.<br>
+        </p>
+    <br></section>
+    <section class="pg95"><br>
+        <p class="data">
+            <b>RODM Field Name</b><br><br>
+            ProtocolType<br>
+            <b>Data type</b><br>
+            Integer<br><br>
+            <b>Value</b><br>
+            An integer value of 1 - 3 characters:<br><br>
+            <b>Protocol</b><br>
+            Value<br>
+            <b>None</b> 0<br><br>
+            <b>Other</b> 1<br><br>
+            <b>Regular 1822</b><br><br>
+            2<br><br>
+            <b>HDH 1822</b><br>
+            3<br><br>
+            <b>DDN X.25</b><br>
+            4<br><br>
+            <b>RFC 877 X.25</b><br>
+            5<br><br>
+          <b>  Ethernet CSMACD</b><br>
+            6<br><br>
+            <b>IEEE 802.3 CSMACD</b><br>
+            7<br><br>
+           <b> IEEE 802.4 Token Bus</b><br>
+            8<br><br>
+            <b>IEEE 802.5 Token Ring</b><br>
+            9<br><br>
+            <b>ISO 88026 Man</b><br>
+            10<br><br>
+            <b>Star Lan</b><br>
+            11<br><br>
+            <b>Proteon 10 MBit</b><br>
+            12<br><br>
+            <b>Proteon 80 MBit</b><br>
+            13<br><br>
+            <b>Hyperchannel</b><br>
+            14<br><br>
+            <b>FDDI</b>15<br>
+            <b>LAPB</b> 16<br>
+           <b> SDLC</b> 17<br>
+            
+
+        </p>
+    <br></section>
+    <section class="pg96"><br>
+        <p class="data">
+            <b>T-1 Carrier (ds1)</b><br>
+            18<br><br>
+            <b>CEPT (e1)</b><br>
+            19<br><br>
+            <b>Basic ISDN</b><br>
+            20<br><br>
+            <b> Primary ISDN</b><br>
+            21<br><br>
+            <b>Point to Point Serial</b><br>
+            22<br><br>
+            <b> Point to Point (ppp)</b><br>
+           23 <br><br>
+            <b>Software Loopback</b><br>
+            24<br><br>
+            <b> EON (CLNP over IP)</b><br>
+            25<br><br>
+            <b>3 MBit Ethernet</b><br>
+            26<br><br>
+            <b>NSIP (XNS over IP)</b><br>
+            27<br><br>
+            <b>SLIP (Serial Line IP)</b><br>
+            28<br><br>
+            <b>Ultra </b>29<br><br>
+            <b>T-3 Carrier (ds3)</b><br>
+            30<br><br>
+            <b>SIP (SMDS)</b><br>
+            31<br><br>
+            <b>Frame Relay</b><br>
+            32<br><br>
+            <b>RS232 Port</b><br>
+            33<br><br>
+            <b>Parallel Port</b><br>
+            34<br><br>
+            <b>Arcnet</b><br>
+            35<br><br>
+            <b>Arcnet Plus</b><br>
+            36<br><br>
+            <b>MIO X25</b><br>
+            37<br><br>
+            <b>SONET or SDH</b><br>
+            38<br><br>
+            <b> X25 PLE</b><br>
+            40<br><br>
+            <b>ISO-8802211C</b><br>
+            41<br><br>
+        </p>
+    <br></section>
+    <section class="pg97"><br>
+        <p class="data">
+            <b>LocalTalk</b><br>
+            42<br><br>
+            <b>SMDS Dxi</b><br>
+            43<br><br>
+            <b>Frame Relay DCE</b><br>
+            44<br><br>
+            <b>V35</b> 45<br><br>
+            <b>HSSI</b> 46<br><br>
+            <b>HIPPI</b> 47<br><br>
+            <b>Generic Modem</b><br>
+            48<br><br>
+            <b>Base Station 80211 </b><br>
+            50<br><br>
+            <b>Remote Station 80211</b><br>
+            51<br><br>
+            <b>SMDS Intercarrier</b><br>
+            52<br><br>
+            <b>Proprietary Virtual/Internal</b><br>
+            53<br><br>
+            <b>SNA Session</b><br>
+            54<br><br>
+            <b>SNA TG</b><br> 
+            55<br><br>
+            <b>IP</b> 56<br><br>
+            <b>LANFDDI</b><br>
+            57<br><br>
+            <b>LANTR</b><br>
+            58<br><br>
+            <b>Data Link Switch</b> <br>
+            65<br><br>
+            <b>Hub8250</b><br>
+            70<br><br>
+            <b>Hub8250-Module </b><br>
+            71<br><br>
+            <b>Hub8250-Port</b><br>
+            72<br><br>
+            <b>Hub8250-Trunk</b><br>
+            73<br><br>
+            <b>LMU6000</b><br>
+            74<br><br>
+            <b>BBNS </b><br>
+            75<br><br>
+            <b>SNA Link</b><br>
+            76<br>
+        </p>
+    <br></section>
+    <section class="pg98"><br>
+        <p class="data">
+            <b>LANBRIDGE</b><br>
+            77<br><br>
+            <b>LANTRSNMP</b><br>
+            78<br><br>
+            <b>LMU6000_CLI</b><br>
+            79<br><br>
+            <b>Omnipoint1</b><br>
+            80<br><br>
+            <b>M3100</b> 81<br><br>
+            <b>LANRMON</b><br>
+            82<br><br>
+          <b>  LANCLAM</b><br>
+            83<br><br>
+           <b> LMU6000_MGR</b><br>
+            84<br><br>
+            <b>ms-sms </b><br>
+            85<br><br>
+            <b>DECnet Phase IV</b><br>
+            86<br><br>
+          <b>  DECnet/OSI</b><br>
+            87<br><br>
+            <b>RBMS/MOP</b><br>
+            88<br><br>
+            <b>TS/MOP </b><br>
+            89<br><br>
+           <b> ipx</b> 90<br><br>
+            <b>ARDISnet</b><br>
+            92<br><br>
+            <b>SAPR3_MGR</b><br>
+            93<br><br>
+            <b>maintOpConsole </b><br>
+            94<br><br>
+            <b>NETVIEW_WIN</b><br>
+            95<br><br>
+            <b>SYTEMS_MGMT</b><br>
+            96<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            0<br>
+        </p>
+    <br></section>
+    <section class="pg99"><br>
+        <p class="data">
+            <b>LayoutWidth<br>
+                Description</b><br><br>
+            This field is used by the view layout facility to determine the width of each row
+            when the grid layout algorithm is used. Each row contains a maximum of the
+            number of resources specified by the LayoutWidth field. If a 0 (zero) value is
+            specified, the layout width is calculated by the NetView management console.<br><br>
+            <b>RODM Field Name</b><br><br>
+            LayoutWidth<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+            <b>Value</b><br><br>
+            Valid values are in the range of 0 - 200.<br><br>
+            <b>Value user modifiable</b><br><br>
+            Yes<br><br>
+            <b>Default value</b><br><br>
+            0<br><br>
+            <b>Level<br>
+                Description</b><br><br>
+            The maximum CFLEVEL supported by the system.<br><br>
+            <b>RODM Field Name</b><br><br>
+            Level<br><br>
+            <b>Data type</b><br><br>
+            Integer<br>
+        </p>
+    <br></section>
+    <section class="pg100"><br>
+        <p class="data">
+            <b>Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+            <b>Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br>
+           <b> FLB_LongTimeRetryNetwork<br>
+            Description</b><br><br>
+            An operational variable that indicates how much time in seconds must pass before
+            topology manager attempts to reissue its request to the topology agent for the
+            network topology.<br><br>
+             The value specified in this field along with the value specified in the
+            FLB_LongTryRetryNetwork field determines the time interval of the second retry
+            phase.<br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br><br>
+            <b>RODM Field Name</b><br><br>
+            FLB_LongTimeRetryNetwork<br><br>
+            <b>Data type</b><br><br>
+            INTEGER<br><br>
+           <b> Value</b><br><br>
+            A positive integer in the range of 0 - 3600.<br><br>
+           <b> Value user modifiable</b><br><br>
+            No<br><br>
+            <b>Default value</b><br><br>
+            1800<br><br><b>
+                FLB_LongTryRetryLocal<br>
+                Description</b><br><br>
+            An operational variable that indicates how many long-term retries the topology
+            manager attempts, before identifying the agent as inactive or unavailable, when
+            monitoring local topology. <br><br>
+            You can only set the value indirectly through the TOPOSNA SETDEFS command.<br>
+        </p>
+        </p>
+    <br></section>
+</body>
+</html>

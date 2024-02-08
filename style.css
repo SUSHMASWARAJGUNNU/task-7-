@@ -1,0 +1,58 @@
+body {
+    margin-left: 25%;
+    margin-right: 25%;
+    font-size: 12px;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    opacity: 1;
+   }
+   
+.pg1,.pg2,.pg3,.pg4,.pg5,.pg6,.pg7,.pg8,.pg9,.pg10,.pg11,.pg12,.pg13,.pg14,.pg15,.pg16,.pg17,.pg18,.pg19,.pg20,
+.pg21,.pg22,.pg23,.pg24,.pg25,.pg26,.pg27,.pg28,.pg29,.pg30,.pg31,.pg32,.pg33,.pg34,.pg35,.pg36,.pg37,.pg38,.pg39,.pg40,
+.pg41,.pg42,.pg43,.pg44,.pg45,.pg46,.pg47,.pg48,.pg49,.pg50,.pg51,.pg52,.pg53,.pg54,.pg55,.pg56,.pg57,.pg58,.pg59,.pg60,
+.pg61,.pg62,.pg63,.pg64,.pg65,.pg66,.pg67,.pg68,.pg69,.pg70,.pg71,.pg72,.pg73,.pg74,.pg75,.pg76,.pg77,.pg78,.pg79,.pg80,
+.pg81,.pg82,.pg83,.pg84,.pg85,.pg86,.pg87,.pg88,.pg89,.pg90,.pg91,.pg92,.pg93,.pg94,.pg95,.pg96,.pg97,.pg98,.pg99,.pg100{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2px;
+    background-color: rgb(231, 224, 224);
+    box-shadow: 5px;
+
+   }
+img{
+width: 90%;
+height: 100%;
+margin-left: 4%;
+margin-right: 2%;
+margin-top: -25px;
+display: flex;
+justify-content: center;
+text-align: center;
+
+
+   }
+.data{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 20%;
+    margin-right: 10%;
+    text-align: justify;
+   }
+   .line{
+    width: 100%;
+    height: 2px;
+    background-color: black;
+   }
+   .points{
+    margin-top: -10%;
+    margin-bottom: -10%;
+    margin-left: 20%;
+    margin-right: 10%;
+    text-align: justify;
+   }
+   .sen{
+      font-family: cursive;
+      margin-top: -10%;
+      text-align: justify;
+      margin-left: 25%;
+   }
